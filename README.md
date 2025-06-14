@@ -1,33 +1,43 @@
 # 🎨 BannerFX-Termux
 
-Script interactivo para crear un banner visual en Termux con nombre personalizado, efectos visuales (`figlet + lolcat`) y bienvenida automática. Diseñado por [Crist'Hack](https://github.com/hackcrist).
+**Script profesional para personalizar tu terminal Termux**  
+📛 Crea banners con tu nombre, colores animados (`figlet + lolcat`) y bienvenida automática.  
+
+🔧 Diseñado por [Crist'Hack](https://github.com/hackcrist) para dar estilo único a tu terminal.
 
 ---
 
 ## 🚀 Funciones principales
 
-✅ Cambia el nombre que aparece en el banner  
-✅ Vista previa antes de instalar  
-✅ Muestra IP, fecha y hora  
-✅ Se ejecuta automáticamente al iniciar Termux  
-✅ Interfaz de menú sencilla y visual  
+- ✅ Cambia el nombre que aparece en el banner  
+- ✅ Vista previa antes de instalar  
+- ✅ Muestra IP pública, fecha y hora  
+- ✅ Se ejecuta automáticamente al iniciar Termux  
+- ✅ Interfaz con menú visual y clara  
 
 ---
 
-## 📦 Instalación paso a paso (funcional)
+## 📦 Instalación paso a paso
 
 ### 🔧 Requisitos previos
 
-1. Tener **Termux actualizado**
-   ```bash
-   pkg update -y && pkg upgrade -y
-   ```
+1. Actualizar Termux:
 
-2. Instalar herramientas necesarias
-   ```bash
-   pkg install git figlet ruby -y
-   gem install lolcat
-   ```
+```bash
+pkg update -y && pkg upgrade -y
+```
+
+
+2. Instalar dependencias necesarias:
+
+```bash
+pkg install git figlet ruby -y
+```
+
+
+```bash
+gem install lolcat
+```
 
 ---
 
@@ -35,6 +45,10 @@ Script interactivo para crear un banner visual en Termux con nombre personalizad
 
 ```bash
 git clone https://github.com/hackcrist/BannerFX-Termux.git
+```
+
+
+```bash
 cd BannerFX-Termux
 ```
 
@@ -44,19 +58,23 @@ cd BannerFX-Termux
 
 ```bash
 chmod +x instalar_banner.sh
+```
+
+
+```bash
 bash instalar_banner.sh
 ```
 
 ---
 
-## 🧪 Cómo funciona el menú
+## 🧪 Menú interactivo
 
-Una vez ejecutado, verás un menú con estas opciones:
+Al ejecutar el script, verás estas opciones:
 
-1. 📝 Cambiar el nombre que aparece en el banner  
-2. 🔍 Ver cómo se verá (vista previa)  
-3. ✅ Instalar el banner (se agrega a `.bashrc`)  
-4. ❌ Salir del instalador
+1. 📝 Cambiar el nombre del banner  
+2. 🔍 Ver vista previa (cómo se verá)  
+3. ✅ Instalar el banner (se añade al `.bashrc`)  
+4. ❌ Salir del menú
 
 ---
 
@@ -71,21 +89,33 @@ Una vez ejecutado, verás un menú con estas opciones:
 🌐 IP Pública: 190.xxx.xxx.xx
 ```
 
+✨ ¡El banner se mostrará automáticamente cada vez que abras Termux!
+
 ---
 
-## 🧑 Autor
+## ⭐ Apoya este proyecto
 
-- 🔧 Proyecto hecho por [Crist'Hack](https://github.com/hackcrist)
-- 🛠️ Ideal para terminales personalizadas y herramientas de presentación
-- 💬 Aporta o clona libremente
+¿Te gusta esta herramienta?  
+💖 Dale una estrella al repositorio y compártelo con tus amigos:
+
+👉 https://github.com/hackcrist/BannerFX-Termux
+
+---
+
+## 👤 Autor
+
+- 🧠 Hecho con pasión por [Crist'Hack](https://github.com/hackcrist)  
+- 🛠️ Ideal para personalizar terminales y presentaciones  
+- 💬 Se aceptan sugerencias y mejoras
+
+---
+
+## 👥 Colaboradores
+
+- 🤝 **Hackabner** – Colaborador de código
 
 ---
 
 ## 📄 Licencia
 
-Este proyecto está bajo la **Licencia Apache 2.0**  
-Consulta el archivo [`LICENSE`](./LICENSE) para más detalles.
-
-## 👤 Autor 
-
-Hecho con ❤️ por **Crist**
+Licencia **Apache 2.0** – Consulta el archivo [`LICENSE`](./LICENSE) para más detalles.
