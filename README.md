@@ -1,121 +1,73 @@
-# 🎨 BannerFX-Termux
+# 📌 BannerFX-Termux
 
-**Script profesional para personalizar tu terminal Termux**  
-📛 Crea banners con tu nombre, colores animados (`figlet + lolcat`) y bienvenida automática.  
-
-🔧 Diseñado por [Crist'Hack](https://github.com/hackcrist) para dar estilo único a tu terminal.
+**BannerFX-Termux** es un script para personalizar tu terminal Termux con un **banner inclinado estilo hacker**, usando `figlet` y `lolcat`.
 
 ---
 
-## 🚀 Funciones principales
+## 🎯 Características
 
-- ✅ Cambia el nombre que aparece en el banner  
-- ✅ Vista previa antes de instalar  
-- ✅ Muestra IP pública, fecha y hora  
-- ✅ Se ejecuta automáticamente al iniciar Termux  
-- ✅ Interfaz con menú visual y clara  
-
----
-
-## 📦 Instalación paso a paso
-
-### 🔧 Requisitos previos
-
-1. Actualizar Termux:
-
-```bash
-pkg update -y && pkg upgrade -y
-```
-
-
-2. Instalar dependencias necesarias:
-
-```bash
-pkg install git figlet ruby -y
-```
-
-
-```bash
-gem install lolcat
-```
+✅ Texto grande e inclinado (fuente `slant`)  
+✅ Colores arcoíris dinámicos con `lolcat`  
+✅ Menú interactivo para cambiar el nombre  
+✅ Vista previa antes de instalar  
+✅ Instalación automática en `.bashrc`  
+✅ Ligero y personalizable
 
 ---
 
-### 🔽 Clonar el repositorio
+## 🚀 Instalación rápida
 
 ```bash
 git clone https://github.com/hackcrist/BannerFX-Termux.git
-```
-
-
-```bash
 cd BannerFX-Termux
+chmod +x banner-hacker.sh
+./banner-hacker.sh
 ```
 
 ---
 
-### 🚀 Ejecutar el instalador
+## ⚡ Uso
 
-```bash
-chmod +x instalar_banner.sh
+1️⃣ Ejecuta `banner-hacker.sh`  
+2️⃣ Cambia el nombre del banner a tu gusto  
+3️⃣ Mira la vista previa  
+4️⃣ Instálalo → se agrega solo a `.bashrc`  
+5️⃣ Abre Termux y disfruta tu **banner inclinado hacker**
+
+---
+
+## 📂 Archivos incluidos
+
+- `banner-hacker.sh` → Script principal
+- `README.md` → Esta documentación
+
+---
+
+## 🧑‍💻 Requisitos
+
+- Termux actualizado  
+- `figlet` y `lolcat` (el script los instala solo)
+
+---
+
+## ✨ Ejemplo
+
+```plaintext
+   ________  ________  ________  ________ 
+  /  _____/ /  _____/ /  _____/ /  _____/ 
+ /   \  ___/   \  ___/   \  ___/   \  ___ 
+ \    \_\  \    \_\  \    \_\  \    \_\  \
+  \______  /\______  /\______  /\______  /
+         \/        \/        \/        \/ 
 ```
 
-
-```bash
-bash instalar_banner.sh
-```
+_Renderizado con `figlet -f slant` y `lolcat`._
 
 ---
 
-## 🧪 Menú interactivo
+## ✅ Autor
 
-Al ejecutar el script, verás estas opciones:
+**Creado por:** hackcrist  
+**Repositorio oficial:** [BannerFX-Termux](https://github.com/hackcrist/BannerFX-Termux)
 
-1. 📝 Cambiar el nombre del banner  
-2. 🔍 Ver vista previa (cómo se verá)  
-3. ✅ Instalar el banner (se añade al `.bashrc`)  
-4. ❌ Salir del menú
-
----
-
-## 📸 Ejemplo visual del banner
-
-```
-============================
-       CRIST'HACK
-============================
-📅 Fecha : Sábado, 14 Junio 2025
-⏰ Hora  : 08:30 AM
-🌐 IP Pública: 190.xxx.xxx.xx
-```
-
-✨ ¡El banner se mostrará automáticamente cada vez que abras Termux!
-
----
-
-## ⭐ Apoya este proyecto
-
-¿Te gusta esta herramienta?  
-💖 Dale una estrella al repositorio y compártelo con tus amigos:
-
-👉 https://github.com/hackcrist/BannerFX-Termux
-
----
-
-## 👤 Autor
-
-- 🧠 Hecho con pasión por [Crist'Hack](https://github.com/hackcrist)  
-- 🛠️ Ideal para personalizar terminales y presentaciones  
-- 💬 Se aceptan sugerencias y mejoras
-
----
-
-## 👥 Colaboradores
-
-- 🤝 **Hackabner** – Colaborador de código
-
----
-
-## 📄 Licencia
-
-Licencia **Apache 2.0** – Consulta el archivo [`LICENSE`](./LICENSE) para más detalles.
+¡Disfruta tu terminal con estilo hacker! 🚀
