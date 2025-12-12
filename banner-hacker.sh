@@ -32,7 +32,7 @@ mostrar_menu() {
     echo -e "${verde}1.${reset} Cambiar nombre del banner (actual: ${amarillo}${NOMBRE_BANNER}${reset})"
     echo -e "${verde}2.${reset} Vista previa del banner"
     echo -e "${verde}3.${reset} Instalar banner"
-    echo -e "${verde}4.${reset} Salir"
+    echo -e "${verde}0.${reset} Salir"
     echo ""
     read -p "➡️  Elige una opción: " OPCION
 }
