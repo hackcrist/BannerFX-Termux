@@ -1,73 +1,104 @@
-# 📌 BannerFX-Termux
+﻿# BannerFX-Termux
 
-**BannerFX-Termux** es un script para personalizar tu terminal Termux con un **banner inclinado estilo hacker**, usando `figlet` y `lolcat`.
+BannerFX-Termux is a Termux script to customize your terminal with a hacker-style banner using `figlet` and `lolcat`.
 
----
+## Features
 
-## 🎯 Características
+- Interactive menu.
+- Banner name customization.
+- Multiple modern styles.
+- Preview before install.
+- Optional random mode.
+- Save/load profiles.
+- Install and uninstall startup banner in `.bashrc`.
 
-✅ Texto grande e inclinado (fuente `slant`)  
-✅ Colores arcoíris dinámicos con `lolcat`  
-✅ Menú interactivo para cambiar el nombre  
-✅ Vista previa antes de instalar  
-✅ Instalación automática en `.bashrc`  
-✅ Ligero y personalizable
+## Requirements (Termux)
 
----
+- Termux
+- `figlet`
+- `ruby` (for `gem`)
+- `lolcat`
 
-## 🚀 Instalación rápida
+## Quick Install (Termux)
 
 ```bash
+pkg update -y && pkg upgrade -y && pkg install -y git && ( [ -d BannerFX-Termux/.git ] && cd BannerFX-Termux && git pull || git clone https://github.com/hackcrist/BannerFX-Termux.git && cd BannerFX-Termux ) && sed -i 's/\r$//' install.sh banner-hacker.sh && chmod +x install.sh && bash install.sh
+```
+
+## Step-by-step Install
+
+```bash
+pkg update && pkg upgrade -y
+pkg install -y git
+
 git clone https://github.com/hackcrist/BannerFX-Termux.git
 cd BannerFX-Termux
-chmod +x banner-hacker.sh
-./banner-hacker.sh
+sed -i 's/\r$//' install.sh banner-hacker.sh
+chmod +x install.sh
+bash install.sh
 ```
 
----
+## Usage
 
-## ⚡ Uso
+Run from any folder:
 
-1️⃣ Ejecuta `banner-hacker.sh`  
-2️⃣ Cambia el nombre del banner a tu gusto  
-3️⃣ Mira la vista previa  
-4️⃣ Instálalo → se agrega solo a `.bashrc`  
-5️⃣ Abre Termux y disfruta tu **banner inclinado hacker**
-
----
-
-## 📂 Archivos incluidos
-
-- `banner-hacker.sh` → Script principal
-- `README.md` → Esta documentación
-
----
-
-## 🧑‍💻 Requisitos
-
-- Termux actualizado  
-- `figlet` y `lolcat` (el script los instala solo)
-
----
-
-## ✨ Ejemplo
-
-```plaintext
-   ________  ________  ________  ________ 
-  /  _____/ /  _____/ /  _____/ /  _____/ 
- /   \  ___/   \  ___/   \  ___/   \  ___ 
- \    \_\  \    \_\  \    \_\  \    \_\  \
-  \______  /\______  /\______  /\______  /
-         \/        \/        \/        \/ 
+```bash
+bannerfx
 ```
 
-_Renderizado con `figlet -f slant` y `lolcat`._
+Or run directly from repository:
 
----
+```bash
+bash banner-hacker.sh
+```
 
-## ✅ Autor
+## Update
 
-**Creado por:** hackcrist  
-**Repositorio oficial:** [BannerFX-Termux](https://github.com/hackcrist/BannerFX-Termux)
+```bash
+cd ~/BannerFX-Termux
+git pull
+chmod +x install.sh
+bash install.sh
+```
 
-¡Disfruta tu terminal con estilo hacker! 🚀
+## Uninstall
+
+```bash
+cd ~/BannerFX-Termux
+chmod +x uninstall.sh
+bash uninstall.sh
+```
+
+## Troubleshooting
+
+If you get `syntax error: unexpected end of file`, convert line endings to LF and retry:
+
+```bash
+sed -i 's/\r$//' install.sh uninstall.sh banner-hacker.sh
+chmod +x install.sh uninstall.sh banner-hacker.sh
+bash install.sh
+```
+
+If `bannerfx` is not found after install:
+
+```bash
+hash -r
+source ~/.bashrc
+bannerfx
+```
+
+## Files
+
+- `banner-hacker.sh`: main script.
+- `install.sh`: Termux installer.
+- `uninstall.sh`: removes command and startup banner.
+
+## Author
+
+hackcrist
+
+## License
+
+This project is licensed under Apache License 2.0.
+See `LICENSE` and `NOTICE` for details.
+
