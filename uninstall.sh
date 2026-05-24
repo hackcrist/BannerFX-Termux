@@ -3,31 +3,31 @@ set -euo pipefail
 
 PREFIX_DIR="${PREFIX:-/data/data/com.termux/files/usr}"
 CMD_FILE="$PREFIX_DIR/bin/bannerfx"
-BANNER_SCRIPT="$HOME/.crist_banner.sh"
+CMD_FILE_SH="$PREFIX_DIR/bin/bannerfx-sh"
+BANNER_SCRIPT_SH="$HOME/.crist_banner.sh"
+BANNER_SCRIPT_PY="$HOME/.crist_banner.py"
 BASHRC_FILE="$HOME/.bashrc"
 CONFIG_DIR="$HOME/.config/crist_banner"
-BASHRC_HOOK='[ -f "$HOME/.crist_banner.sh" ] && bash "$HOME/.crist_banner.sh"'
 
-if [ -f "$CMD_FILE" ]; then
-  rm -f "$CMD_FILE"
-  echo "Comando global eliminado: bannerfx"
-else
-  echo "No existe comando global bannerfx"
-fi
+for f in "$CMD_FILE" "$CMD_FILE_SH"; do
+  if [ -f "$f" ]; then
+    rm -f "$f"
+    echo "Comando eliminado: $f"
+  fi
+done
 
-if [ -f "$BANNER_SCRIPT" ]; then
-  rm -f "$BANNER_SCRIPT"
-  echo "Banner de inicio eliminado: $BANNER_SCRIPT"
-else
-  echo "No existe archivo de banner"
-fi
+for f in "$BANNER_SCRIPT_SH" "$BANNER_SCRIPT_PY"; do
+  if [ -f "$f" ]; then
+    rm -f "$f"
+    echo "Banner de inicio eliminado: $f"
+  fi
+done
 
 if [ -f "$BASHRC_FILE" ]; then
-  # Usar grep sin -x para tolerar espacios al final de la linea
   tmp="$(mktemp)"
-  grep -Fv "$BASHRC_HOOK" "$BASHRC_FILE" > "$tmp" || true
+  grep -Fv "crist_banner.sh" "$BASHRC_FILE" | grep -Fv "crist_banner.py" > "$tmp" || true
   mv "$tmp" "$BASHRC_FILE"
-  echo "Entrada del banner removida de $BASHRC_FILE"
+  echo "Entradas de banner removidas de .bashrc"
 fi
 
 if [ -d "$CONFIG_DIR" ]; then

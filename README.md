@@ -7,6 +7,7 @@ BannerFX-Termux es un script para Termux que personaliza tu terminal con un bann
 - Menu interactivo.
 - Personalizacion del nombre del banner.
 - 8 estilos modernos: neon, matrix, clean, retro, fire, ocean, glitch, minimal-dark.
+- Python y Bash: version principal en Python, fallback en Bash (`bannerfx-sh`).
 - Vista previa antes de instalar.
 - Modo aleatorio opcional.
 - Guardar/cargar perfiles.
@@ -46,7 +47,8 @@ bash install.sh
 Ejecutar desde cualquier carpeta:
 
 ```bash
-bannerfx
+bannerfx              # Version Python (principal)
+bannerfx-sh           # Version Bash (fallback)
 ```
 
 CLI:
@@ -59,7 +61,8 @@ bannerfx --version   # Muestra la version
 O directamente desde el repositorio:
 
 ```bash
-bash banner-hacker.sh
+python3 banner-hacker.py   # Version Python
+bash banner-hacker.sh      # Version Bash
 ```
 
 ## Actualizar
