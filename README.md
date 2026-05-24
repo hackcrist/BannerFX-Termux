@@ -105,5 +105,5 @@ hackcrist
 ## Licencia
 
 Este proyecto esta licenciado bajo Apache License 2.0.
-Ver `LICENSE` y `NOTICE` para detalles.
+Ver [LICENSE](LICENSE) y [NOTICE](NOTICE) para detalles.
 
