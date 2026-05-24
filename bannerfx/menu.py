@@ -13,7 +13,7 @@ from typing import List
 
 from ._version import VERSION
 from .config import Config
-from .styles import STYLES, render_banner, estilo_aleatorio
+from .styles import STYLES, render_banner, estilo_aleatorio, COWFILES_DIR
 
 GREEN = "\033[32m"
 RED = "\033[31m"
@@ -75,6 +75,8 @@ class Menu:
             "glitch       (doble capa)",
             "minimal-dark (gris tenue)",
         ]
+        if COWFILES_DIR:
+            descs.append("cowsay       (arte ASCII animal)")
         for i, d in enumerate(descs, 1):
             print(f"{GREEN}{i}.{RESET} {d}")
 
@@ -85,9 +87,14 @@ class Menu:
             print()
             self.mostrar_estilos()
             print()
+            max_s = len(STYLES) - (0 if COWFILES_DIR else 1)
             try:
-                idx = int(IO.input_str("Elige estilo [1-8]: ")) - 1
+                idx = int(IO.input_str(f"Elige estilo [1-{len(STYLES)}]: ")) - 1
                 if 0 <= idx < len(STYLES):
+                    if STYLES[idx] == "cowsay" and not COWFILES_DIR:
+                        IO.err("Estilo no disponible (sin cowfiles).")
+                        time.sleep(1)
+                        continue
                     self.cfg.estilo = STYLES[idx]
                     break
             except ValueError:

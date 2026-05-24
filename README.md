@@ -40,6 +40,7 @@
 | 6  | `ocean`      | tono azul profundo          |
 | 7  | `glitch`     | doble capa con offset       |
 | 8  | `minimal-dark` | gris tenue                |
+| 9  | `cowsay`       | arte ASCII animal aleatorio (71 animales) |
 
 ---
 
@@ -53,6 +54,7 @@
 | Python      | Automatico          |
 | figlet      | Automatico          |
 | pyfiglet    | Automatico          |
+| cowsay      | Automatico          |
 
 > El instalador resuelve todas las dependencias automaticamente.
 
@@ -83,6 +85,7 @@ Una vez instalado, ejecuta desde cualquier carpeta:
 ```bash
 bannerfx              # Version Python (recomendada)
 bannerfx-sh           # Version Bash (alternativa)
+bannerfx-zsh          # Tema ZSH alternativo (.object/)
 ```
 
 ### Opciones CLI
@@ -128,6 +131,22 @@ Elimina el comando global, el banner de inicio y toda la configuracion.
 | `bannerfx: command not found`   | `hash -r; source ~/.bashrc`       |
 | El banner no aparece al abrir   | Verifica que `~/.crist_banner.py` exista y tenga permisos |
 | Error de dependencias           | `pkg install -y figlet python; pip install pyfiglet` |
+
+---
+
+## Assets incluidos
+
+Ademas de los scripts, el proyecto incluye recursos adicionales:
+
+| Recurso           | Cantidad | Descripcion                          |
+|-------------------|----------|--------------------------------------|
+| `core/fonts/`     | 358      | Fuentes FIGlet adicionales           |
+| `core/fontxx/`    | 270      | Fuentes pre-coloreadas con ANSI      |
+| `core/bnr/`       | 48       | Banners ANSI artisticos              |
+| `core/banners/`   | 71       | Cowsay animales (tux, dragon, skull) |
+| `.object/`        | 13       | Temas ZSH alternativos (h4ck3r0)     |
+
+Los assets se instalan automaticamente en `$PREFIX/share/bannerfx/`.
 
 ---
 

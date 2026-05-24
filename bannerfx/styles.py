@@ -13,7 +13,20 @@ import subprocess
 STYLES = [
     "neon", "matrix", "clean", "retro",
     "fire", "ocean", "glitch", "minimal-dark",
+    "cowsay",
 ]
+
+import shutil
+from pathlib import Path
+
+_COWFILES_DIR = None
+_REPO_COW = Path(__file__).resolve().parent.parent / "core" / "banners"
+_PREFIX_COW = Path(shutil.which("bannerfx") or "/").resolve().parent.parent / "share" / "bannerfx" / "banners" if shutil.which("bannerfx") else None
+
+for _p in [_REPO_COW, _PREFIX_COW]:
+    if _p and _p.is_dir() and any(_p.glob("*.cow")):
+        _COWFILES_DIR = _p
+        break
 
 GREEN = "\033[32m"
 GRAY = "\033[90m"
@@ -66,6 +79,31 @@ def _figlet(name: str, font: str = "standard") -> str:
             return name
 
 
+def _cowsay(name: str) -> str:
+    if _COWFILES_DIR:
+        cow_files = list(_COWFILES_DIR.glob("*.cow"))
+        if cow_files:
+            cow = random.choice(cow_files)
+            try:
+                r = subprocess.run(
+                    ["cowsay", "-f", str(cow), name],
+                    capture_output=True, text=True, check=True, timeout=5,
+                )
+                return _rainbow(r.stdout.rstrip("\n"))
+            except Exception:
+                pass
+    try:
+        r = subprocess.run(
+            ["cowsay", name], capture_output=True, text=True, check=True, timeout=5,
+        )
+        return _rainbow(r.stdout.rstrip("\n"))
+    except Exception:
+        return _figlet(name, "standard")
+
+
+COWFILES_DIR = _COWFILES_DIR
+
+
 def render_banner(nombre: str, estilo: str) -> str:
     if estilo == "neon":
         return _rainbow(_figlet(nombre, "slant"))
@@ -85,6 +123,8 @@ def render_banner(nombre: str, estilo: str) -> str:
                 + "\n" + " " + _rainbow(t, offset=random.randint(100, 200)))
     elif estilo == "minimal-dark":
         return _color_lines(_figlet(nombre, "small"), GRAY)
+    elif estilo == "cowsay":
+        return _cowsay(nombre)
     else:
         return _rainbow(_figlet(nombre, "slant"))
 
