@@ -12,8 +12,8 @@ SCRIPT_SRC="${BASH_SOURCE[0]:-$0}"
 REPO_DIR="$(cd "$(dirname "$SCRIPT_SRC")" && pwd)"
 cd "$REPO_DIR"
 
-if [ ! -f "banner-hacker.sh" ]; then
-  echo "Error: No se encuentra banner-hacker.sh en $REPO_DIR" >&2
+if [ ! -f "banner-hacker.sh" ] || [ ! -f "banner-hacker.py" ]; then
+  echo "Error: No se encuentran banner-hacker.sh o banner-hacker.py en $REPO_DIR" >&2
   exit 1
 fi
 
