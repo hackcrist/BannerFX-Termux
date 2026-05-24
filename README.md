@@ -1,31 +1,35 @@
 ﻿# BannerFX-Termux
 
-BannerFX-Termux is a Termux script to customize your terminal with a hacker-style banner using `figlet` and `lolcat`.
+BannerFX-Termux es un script para Termux que personaliza tu terminal con un banner estilo hacker usando `figlet` y `lolcat`.
 
-## Features
+## Caracteristicas
 
-- Interactive menu.
-- Banner name customization.
-- Multiple modern styles.
-- Preview before install.
-- Optional random mode.
-- Save/load profiles.
-- Install and uninstall startup banner in `.bashrc`.
+- Menu interactivo.
+- Personalizacion del nombre del banner.
+- 8 estilos modernos: neon, matrix, clean, retro, fire, ocean, glitch, minimal-dark.
+- Python y Bash: version principal en Python, fallback en Bash (`bannerfx-sh`).
+- Vista previa antes de instalar.
+- Modo aleatorio opcional.
+- Guardar/cargar perfiles.
+- Instalar y desinstalar banner de inicio en `.bashrc`.
+- CLI: `bannerfx --help` y `bannerfx --version`.
 
-## Requirements (Termux)
+## Requisitos (Termux)
 
 - Termux
 - `figlet`
-- `ruby` (for `gem`)
+- `ruby` (para `gem`)
 - `lolcat`
 
-## Quick Install (Termux)
+*(El instalador los descarga automaticamente)*
+
+## Instalacion rapida
 
 ```bash
-pkg update -y && pkg upgrade -y && pkg install -y git && ( [ -d BannerFX-Termux/.git ] && cd BannerFX-Termux && git pull || git clone https://github.com/hackcrist/BannerFX-Termux.git && cd BannerFX-Termux ) && sed -i 's/\r$//' install.sh banner-hacker.sh && chmod +x install.sh && bash install.sh
+pkg update -y && pkg upgrade -y && pkg install -y git && ( [ -d BannerFX-Termux/.git ] && cd BannerFX-Termux && git pull || git clone https://github.com/hackcrist/BannerFX-Termux.git && cd BannerFX-Termux ) && sed -i 's/\r$//' install.sh uninstall.sh banner-hacker.sh && chmod +x install.sh && bash install.sh
 ```
 
-## Step-by-step Install
+## Instalacion paso a paso
 
 ```bash
 pkg update && pkg upgrade -y
@@ -33,26 +37,35 @@ pkg install -y git
 
 git clone https://github.com/hackcrist/BannerFX-Termux.git
 cd BannerFX-Termux
-sed -i 's/\r$//' install.sh banner-hacker.sh
+sed -i 's/\r$//' install.sh uninstall.sh banner-hacker.sh
 chmod +x install.sh
 bash install.sh
 ```
 
-## Usage
+## Uso
 
-Run from any folder:
-
-```bash
-bannerfx
-```
-
-Or run directly from repository:
+Ejecutar desde cualquier carpeta:
 
 ```bash
-bash banner-hacker.sh
+bannerfx              # Version Python (principal)
+bannerfx-sh           # Version Bash (fallback)
 ```
 
-## Update
+CLI:
+
+```bash
+bannerfx --help      # Muestra ayuda
+bannerfx --version   # Muestra la version
+```
+
+O directamente desde el repositorio:
+
+```bash
+python3 banner-hacker.py   # Version Python
+bash banner-hacker.sh      # Version Bash
+```
+
+## Actualizar
 
 ```bash
 cd ~/BannerFX-Termux
@@ -61,17 +74,18 @@ chmod +x install.sh
 bash install.sh
 ```
 
-## Uninstall
+## Desinstalar
 
 ```bash
 cd ~/BannerFX-Termux
-chmod +x uninstall.sh
 bash uninstall.sh
 ```
 
-## Troubleshooting
+*(El `uninstall.sh` ya tiene permisos de ejecucion si usaste el instalador. Elimina el comando global, el banner de inicio y toda la configuracion).*
 
-If you get `syntax error: unexpected end of file`, convert line endings to LF and retry:
+## Solucion de problemas
+
+Si obtienes `syntax error: unexpected end of file`, convierte los saltos de linea a LF:
 
 ```bash
 sed -i 's/\r$//' install.sh uninstall.sh banner-hacker.sh
@@ -79,7 +93,7 @@ chmod +x install.sh uninstall.sh banner-hacker.sh
 bash install.sh
 ```
 
-If `bannerfx` is not found after install:
+Si `bannerfx` no se encuentra despues de instalar:
 
 ```bash
 hash -r
@@ -87,18 +101,18 @@ source ~/.bashrc
 bannerfx
 ```
 
-## Files
+## Archivos
 
-- `banner-hacker.sh`: main script.
-- `install.sh`: Termux installer.
-- `uninstall.sh`: removes command and startup banner.
+- `banner-hacker.sh`: script principal (v2.0.0).
+- `install.sh`: instalador para Termux.
+- `uninstall.sh`: elimina comando global, banner y configuracion.
 
-## Author
+## Autor
 
 hackcrist
 
-## License
+## Licencia
 
-This project is licensed under Apache License 2.0.
-See `LICENSE` and `NOTICE` for details.
+Este proyecto esta licenciado bajo Apache License 2.0.
+Ver `LICENSE` y `NOTICE` para detalles.
 

@@ -1,7 +1,25 @@
 ﻿#!/data/data/com.termux/files/usr/bin/bash
+# BannerFX-Termux - v2.0.0
+# Creado por hackcrist
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+readonly VERSION="2.0.0"
 
 set -u
 set -o pipefail
+
+TEMP_FILES=""
+cleanup() {
+    if [ -n "$TEMP_FILES" ]; then
+        rm -f "$TEMP_FILES"
+    fi
+}
+trap cleanup EXIT
 
 # Colors
 verde="\e[32m"
@@ -207,28 +225,29 @@ mostrar_estilos() {
 seleccionar_estilo() {
     local opcion_estilo
 
-    clear
-    info "Selecciona un estilo de banner"
-    echo
-    mostrar_estilos
-    echo
-    read -r -p "Elige estilo [1-8]: " opcion_estilo
+    while true; do
+        clear
+        info "Selecciona un estilo de banner"
+        echo
+        mostrar_estilos
+        echo
+        read -r -p "Elige estilo [1-8]: " opcion_estilo
 
-    case "$opcion_estilo" in
-        1) ESTILO_BANNER="neon" ;;
-        2) ESTILO_BANNER="matrix" ;;
-        3) ESTILO_BANNER="clean" ;;
-        4) ESTILO_BANNER="retro" ;;
-        5) ESTILO_BANNER="fire" ;;
-        6) ESTILO_BANNER="ocean" ;;
-        7) ESTILO_BANNER="glitch" ;;
-        8) ESTILO_BANNER="minimal-dark" ;;
-        *)
-            err "Opcion de estilo invalida."
-            sleep 1
-            return
-            ;;
-    esac
+        case "$opcion_estilo" in
+            1) ESTILO_BANNER="neon" ; break ;;
+            2) ESTILO_BANNER="matrix" ; break ;;
+            3) ESTILO_BANNER="clean" ; break ;;
+            4) ESTILO_BANNER="retro" ; break ;;
+            5) ESTILO_BANNER="fire" ; break ;;
+            6) ESTILO_BANNER="ocean" ; break ;;
+            7) ESTILO_BANNER="glitch" ; break ;;
+            8) ESTILO_BANNER="minimal-dark" ; break ;;
+            *)
+                err "Opcion de estilo invalida."
+                sleep 1
+                ;;
+        esac
+    done
 
     guardar_ajustes
     ok "Estilo actualizado a '$ESTILO_BANNER'."
@@ -429,7 +448,7 @@ EOF
 }
 
 desinstalar_banner() {
-    local tmp
+    local tmp confirm
 
     if [ -f "$BANNER_SCRIPT" ]; then
         rm -f "$BANNER_SCRIPT"
@@ -439,10 +458,21 @@ desinstalar_banner() {
     fi
 
     if [ -f "$BASHRC_FILE" ]; then
-        tmp="$(mktemp)"
-        grep -Fvx "$BASHRC_HOOK" "$BASHRC_FILE" > "$tmp" || true
+        tmp="$(mktemp)"; TEMP_FILES="$TEMP_FILES $tmp"
+        grep -Fv "$BASHRC_HOOK" "$BASHRC_FILE" > "$tmp" || true
         mv "$tmp" "$BASHRC_FILE"
         ok "Entrada del banner removida de $BASHRC_FILE"
+    fi
+
+    if [ -d "$CONFIG_DIR" ]; then
+        warn "Se eliminara el directorio de configuracion: $CONFIG_DIR"
+        read -r -p "Confirmar? (s/N): " confirm
+        if [ "$confirm" = "s" ] || [ "$confirm" = "S" ]; then
+            rm -rf "$CONFIG_DIR"
+            ok "Directorio de configuracion eliminado."
+        else
+            info "Configuracion conservada."
+        fi
     fi
 
     read -r -p "Presiona Enter para volver al menu..."
@@ -451,7 +481,7 @@ desinstalar_banner() {
 mostrar_menu() {
     clear
     echo -e "${verde}====================================${reset}"
-    echo -e "${cyan}     Menu de Banner Moderno${reset}"
+    echo -e "${cyan}     BannerFX v${VERSION}${reset}"
     echo -e "${verde}====================================${reset}"
     echo
     echo -e "${verde}1.${reset} Cambiar nombre (actual: ${amarillo}${NOMBRE_BANNER}${reset})"
@@ -468,6 +498,25 @@ mostrar_menu() {
 }
 
 main() {
+    case "${1:-}" in
+        --help|-h)
+            echo "BannerFX v$VERSION - Personaliza tu banner de Termux"
+            echo "Uso: bannerfx [opcion]"
+            echo
+            echo "Opciones:"
+            echo "  --help, -h     Muestra esta ayuda"
+            echo "  --version, -v  Muestra la version"
+            echo
+            echo "Sin argumentos: abre el menu interactivo"
+            echo "Estilos disponibles: neon, matrix, clean, retro, fire, ocean, glitch, minimal-dark"
+            exit 0
+            ;;
+        --version|-v)
+            echo "BannerFX v$VERSION"
+            exit 0
+            ;;
+    esac
+
     require_termux
     ensure_config
     cargar_ajustes
