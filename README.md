@@ -1,35 +1,68 @@
-﻿# BannerFX-Termux
+﻿<p align="center">
+  <img src="https://img.shields.io/badge/version-2.0.0-brightgreen" alt="Version">
+  <img src="https://img.shields.io/badge/python-3.8+-blue" alt="Python">
+  <img src="https://img.shields.io/badge/platform-Termux-red" alt="Termux">
+  <img src="https://img.shields.io/badge/license-Apache%202.0-yellow" alt="License">
+</p>
 
-BannerFX-Termux es un script para Termux que personaliza tu terminal con un banner estilo hacker usando `figlet` y `lolcat`.
+<pre align="center">
+  ____                  _   __  __ _   _____
+ | __ )  __ _ _ __   __| | |  \/  | | |__   |
+ |  _ \ / _` | '_ \ / _` | | |\/| | |   / /
+ | |_) | (_| | | | | (_| | | |  | | |_ / /_
+ |____/ \__,_|_| |_|\__,_| |_|  |_|_(_)____|
+
+     BannerFX - Personaliza tu terminal Termux
+</pre>
+
+**BannerFX** es una herramienta para Termux que genera banners personalizados con estilo hacker usando `figlet` y colores animados. Disponible en **Python** (principal) y **Bash** (fallback).
+
+---
 
 ## Caracteristicas
 
-- Menu interactivo.
-- Personalizacion del nombre del banner.
-- 8 estilos modernos: neon, matrix, clean, retro, fire, ocean, glitch, minimal-dark.
-- Python y Bash: version principal en Python, fallback en Bash (`bannerfx-sh`).
-- Vista previa antes de instalar.
-- Modo aleatorio opcional.
-- Guardar/cargar perfiles.
-- Instalar y desinstalar banner de inicio en `.bashrc`.
-- CLI: `bannerfx --help` y `bannerfx --version`.
+- Menu interactivo con 8 estilos visuales
+- Vista previa en vivo antes de instalar
+- Modo aleatorio para sorpresa cada vez que abres la terminal
+- Sistema de perfiles: guarda y carga configuraciones
+- CLI con `--help` y `--version`
+- Instalacion y desinstalacion limpia en `.bashrc`
 
-## Requisitos (Termux)
+### Estilos disponibles
 
-- Termux
-- `figlet`
-- `ruby` (para `gem`)
-- `lolcat`
+| #  | Estilo       | Descripcion                 |
+|----|--------------|-----------------------------|
+| 1  | `neon`       | slant + arcoiris dinamico   |
+| 2  | `matrix`     | verde fijo                  |
+| 3  | `clean`      | minimalista                 |
+| 4  | `retro`      | big + tono calido           |
+| 5  | `fire`       | tono fuego                  |
+| 6  | `ocean`      | tono azul profundo          |
+| 7  | `glitch`     | doble capa con offset       |
+| 8  | `minimal-dark` | gris tenue                |
 
-*(El instalador los descarga automaticamente)*
+---
 
-## Instalacion rapida
+## Instalacion
+
+### Requisitos
+
+| Paquete     | Como se instala     |
+|-------------|---------------------|
+| Termux      | F-Droid / GitHub    |
+| Python      | Automatico          |
+| figlet      | Automatico          |
+| pyfiglet    | Automatico          |
+
+> El instalador resuelve todas las dependencias automaticamente.
+
+### Rapida (una linea)
 
 ```bash
 pkg update -y && pkg upgrade -y && pkg install -y git && ( [ -d BannerFX-Termux/.git ] && cd BannerFX-Termux && git pull || git clone https://github.com/hackcrist/BannerFX-Termux.git && cd BannerFX-Termux ) && chmod +x install.sh && bash install.sh
 ```
 
-## Instalacion paso a paso
+### Paso a paso
 
 ```bash
 pkg update && pkg upgrade -y
@@ -41,28 +74,32 @@ chmod +x install.sh
 bash install.sh
 ```
 
+---
+
 ## Uso
 
-Ejecutar desde cualquier carpeta:
+Una vez instalado, ejecuta desde cualquier carpeta:
 
 ```bash
-bannerfx              # Version Python (principal)
-bannerfx-sh           # Version Bash (fallback)
+bannerfx              # Version Python (recomendada)
+bannerfx-sh           # Version Bash (alternativa)
 ```
 
-CLI:
+### Opciones CLI
 
 ```bash
-bannerfx --help      # Muestra ayuda
-bannerfx --version   # Muestra la version
+bannerfx --help       # Muestra la ayuda
+bannerfx --version    # Muestra la version
 ```
 
-O directamente desde el repositorio:
+### Ejecucion directa (sin instalar)
 
 ```bash
 python3 banner-hacker.py   # Version Python
 bash banner-hacker.sh      # Version Bash
 ```
+
+---
 
 ## Actualizar
 
@@ -80,30 +117,46 @@ cd ~/BannerFX-Termux
 bash uninstall.sh
 ```
 
-*(El `uninstall.sh` ya tiene permisos de ejecucion si usaste el instalador. Elimina el comando global, el banner de inicio y toda la configuracion).*
+Elimina el comando global, el banner de inicio y toda la configuracion.
+
+---
 
 ## Solucion de problemas
 
-Si `bannerfx` no se encuentra despues de instalar:
+| Problema                        | Solucion                          |
+|---------------------------------|-----------------------------------|
+| `bannerfx: command not found`   | `hash -r; source ~/.bashrc`       |
+| El banner no aparece al abrir   | Verifica que `~/.crist_banner.py` exista y tenga permisos |
+| Error de dependencias           | `pkg install -y figlet python; pip install pyfiglet` |
 
-```bash
-hash -r
-source ~/.bashrc
-bannerfx
+---
+
+## Estructura del proyecto
+
+```
+BannerFX-Termux/
+├── banner-hacker.py          # Entry point Python
+├── banner-hacker.sh          # Version Bash
+├── bannerfx/                 # Paquete Python
+│   ├── __init__.py
+│   ├── _version.py
+│   ├── config.py             # Configuracion y perfiles
+│   ├── styles.py             # Motor de estilos y colores
+│   ├── menu.py               # Menu interactivo
+│   └── installer.py          # Instalacion y dependencias
+├── install.sh                # Instalador
+├── uninstall.sh              # Desinstalador
+├── .gitattributes            # Normalizacion de saltos de linea
+├── LICENSE                   # Apache 2.0
+└── NOTICE                    # Avisos de licencia
 ```
 
-## Archivos
-
-- `banner-hacker.sh`: script principal (v2.0.0).
-- `install.sh`: instalador para Termux.
-- `uninstall.sh`: elimina comando global, banner y configuracion.
+---
 
 ## Autor
 
-hackcrist
+**hackcrist** — Creador y mantenedor del proyecto.
 
 ## Licencia
 
-Este proyecto esta licenciado bajo Apache License 2.0.
-Ver `LICENSE` y `NOTICE` para detalles.
-
+Distribuido bajo **Apache License 2.0**. Ver [LICENSE](LICENSE) y [NOTICE](NOTICE) para mas informacion.
