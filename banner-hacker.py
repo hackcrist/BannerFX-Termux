@@ -1,4 +1,13 @@
 #!/data/data/com.termux/files/usr/bin/env python3
+# BannerFX-Termux - v2.0.0
+# Creado por hackcrist
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+
 import sys, os, json, random, subprocess, time, textwrap, shutil
 from pathlib import Path
 
