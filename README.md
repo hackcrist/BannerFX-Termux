@@ -26,7 +26,7 @@ BannerFX-Termux es un script para Termux que personaliza tu terminal con un bann
 ## Instalacion rapida
 
 ```bash
-pkg update -y && pkg upgrade -y && pkg install -y git && ( [ -d BannerFX-Termux/.git ] && cd BannerFX-Termux && git pull || git clone https://github.com/hackcrist/BannerFX-Termux.git && cd BannerFX-Termux ) && sed -i 's/\r$//' install.sh uninstall.sh banner-hacker.sh && chmod +x install.sh && bash install.sh
+pkg update -y && pkg upgrade -y && pkg install -y git && ( [ -d BannerFX-Termux/.git ] && cd BannerFX-Termux && git pull || git clone https://github.com/hackcrist/BannerFX-Termux.git && cd BannerFX-Termux ) && chmod +x install.sh && bash install.sh
 ```
 
 ## Instalacion paso a paso
@@ -37,7 +37,6 @@ pkg install -y git
 
 git clone https://github.com/hackcrist/BannerFX-Termux.git
 cd BannerFX-Termux
-sed -i 's/\r$//' install.sh uninstall.sh banner-hacker.sh
 chmod +x install.sh
 bash install.sh
 ```
@@ -84,14 +83,6 @@ bash uninstall.sh
 *(El `uninstall.sh` ya tiene permisos de ejecucion si usaste el instalador. Elimina el comando global, el banner de inicio y toda la configuracion).*
 
 ## Solucion de problemas
-
-Si obtienes `syntax error: unexpected end of file`, convierte los saltos de linea a LF:
-
-```bash
-sed -i 's/\r$//' install.sh uninstall.sh banner-hacker.sh
-chmod +x install.sh uninstall.sh banner-hacker.sh
-bash install.sh
-```
 
 Si `bannerfx` no se encuentra despues de instalar:
 
